@@ -160,7 +160,7 @@ int main() {
   glEnableVertexAttribArray(2);
 
   int width, height, nrChannels;
-  unsigned char *data = stbi_load("../assets/rubiks-cube-tex.jpg", &width,
+  unsigned char *data = stbi_load("../assets/container2.png", &width,
                                   &height, &nrChannels, 0);
 
   unsigned int texture1;
@@ -173,15 +173,39 @@ int main() {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
   if (data) {
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
                  GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
   } else {
-    cout << "TEXTURE LOAD FAILED" << endl;
+    cout << "TEXTURE 1 LOAD FAILED" << endl;
   }
   stbi_image_free(data);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, texture1);
+
+  int width2, height2, nrChannels2;
+  unsigned char *data2 = stbi_load("../assets/container2_specular.png", &width2,
+                                   &height2, &nrChannels2, 0);
+
+  unsigned int texture2;
+  glGenTextures(1, &texture2);
+  glBindTexture(GL_TEXTURE_2D, texture2);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                  GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+  if (data2) {
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width2, height2, 0, GL_RGBA,
+                 GL_UNSIGNED_BYTE, data2);
+    glGenerateMipmap(GL_TEXTURE_2D);
+  } else {
+    cout << "TEXTURE 2 LOAD FAILED" << endl;
+  }
+  stbi_image_free(data2);
+  glActiveTexture(GL_TEXTURE1);
+  glBindTexture(GL_TEXTURE_2D, texture2);
 
   unsigned int lightVAO;
   glGenVertexArrays(1, &lightVAO);
@@ -200,13 +224,14 @@ int main() {
   glm::vec3 obj_col = glm::vec3(1.0f, 0.5f, 0.31f);
   glm::vec3 light_col;
   ourShader.setInt("material.diffuse", 0);
+  ourShader.setInt("material.specular", 1);
+
   ourShader.setVec3("objectColor", obj_col);
 
   // set material
   ourShader.setVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
   ourShader.setVec3("material.diffuse", glm::vec3(1.0f, 0.5f, 0.31f));
-  ourShader.setVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
-  ourShader.setFloat("material.shininess", 32.0f);
+  ourShader.setFloat("material.shininess", 64.0f);
 
   // set light
   ourShader.setVec3("light.specular", glm::vec3(1.0f));
@@ -265,6 +290,9 @@ int main() {
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, texture2);
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
