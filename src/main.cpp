@@ -148,8 +148,8 @@ int main()
     };
     
 
-    Shader ourShader("shaders/shader.vs", "shaders/shader.fs");
-    Shader lightShader("shaders/shader_for_light.vs", "shaders/shader_for_light.fs");
+    Shader ourShader("../shaders/shader.vs", "../shaders/shader.fs");
+    Shader lightShader("../shaders/shader_for_light.vs", "../shaders/shader_for_light.fs");
 
 
     unsigned int VBO; // vertex buffer object to store vertices in gpu memory
