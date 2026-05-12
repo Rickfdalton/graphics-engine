@@ -233,7 +233,10 @@ int main() {
 
   // set light
   ourShader.setVec3("light.specular", glm::vec3(1.0f));
-  ourShader.setVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+  ourShader.setVec3("light.position", lightPos);
+  ourShader.setFloat("light.constant", 1.0f);
+  ourShader.setFloat("light.linear", 0.045f);
+  ourShader.setFloat("light.quadratic", 0.075f);
 
   glm::mat4 projection;
 
