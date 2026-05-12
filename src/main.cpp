@@ -160,6 +160,13 @@ int main() {
       1.0f,  0.0f,  -0.5f, 0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
       -0.5f, 0.5f,  -0.5f, 0.0f,  1.0f,  0.0f,  0.0f,  1.0f};
 
+  glm::vec3 cubePositions[] = {
+      glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
+      glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),
+      glm::vec3(2.4f, -0.4f, -3.5f),  glm::vec3(-1.7f, 3.0f, -7.5f),
+      glm::vec3(1.3f, -2.0f, -2.5f),  glm::vec3(1.5f, 2.0f, -2.5f),
+      glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
+
   Shader ourShader("../shaders/shader.vs", "../shaders/shader.fs");
   Shader lightShader("../shaders/shader_for_light.vs",
                      "../shaders/shader_for_light.fs");
@@ -200,10 +207,6 @@ int main() {
   glActiveTexture(GL_TEXTURE1);
   glBindTexture(GL_TEXTURE_2D, texture2);
 
-  unsigned int texture3 = load_texture("../assets/matrix.jpg");
-  glActiveTexture(GL_TEXTURE2);
-  glBindTexture(GL_TEXTURE_2D, texture3);
-
   unsigned int lightVAO;
   glGenVertexArrays(1, &lightVAO);
   glBindVertexArray(lightVAO);
@@ -221,7 +224,6 @@ int main() {
   glm::vec3 obj_col = glm::vec3(1.0f, 0.5f, 0.31f);
   glm::vec3 light_col;
   ourShader.setInt("material.diffuse", 0);
-  ourShader.setInt("material.emission", 2);
   ourShader.setInt("material.specular", 1);
 
   ourShader.setVec3("objectColor", obj_col);
@@ -231,7 +233,7 @@ int main() {
 
   // set light
   ourShader.setVec3("light.specular", glm::vec3(1.0f));
-  ourShader.setVec3("light.position", lightPos);
+  ourShader.setVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
 
   glm::mat4 projection;
 
@@ -265,34 +267,37 @@ int main() {
 
     ourShader.setVec3("viewPos", cam.cam_pos);
 
-    glm::mat4 model;
     glm::mat4 view;
-
     view = cam.get_view_mat();
     int viewLoc = glGetUniformLocation(ourShader.ID, "view");
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
-    projection = glm::perspective(
-        glm::radians(cam.zoom), (float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
-    int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+    for (unsigned int i = 0; i < 10; i++) {
+      glm::mat4 model;
 
-    model = glm::mat4(1.0f);
-    model = glm::rotate(model, (float)sin(glfwGetTime()) * glm::radians(50.0f),
-                        glm::vec3(.01f, 0.30f, 0.5f));
-    int modelLoc = glGetUniformLocation(ourShader.ID, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+      projection =
+          glm::perspective(glm::radians(cam.zoom),
+                           (float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
+      int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
+      glUniformMatrix4fv(projectionLoc, 1, GL_FALSE,
+                         glm::value_ptr(projection));
 
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture1);
+      model = glm::mat4(1.0f);
+      model = glm::translate(model, cubePositions[i]);
+      model =
+          glm::rotate(model, (float)sin(glfwGetTime()) * glm::radians(50.0f),
+                      glm::vec3(.01f, 0.30f, 0.5f));
+      int modelLoc = glGetUniformLocation(ourShader.ID, "model");
+      glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture2);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, texture1);
 
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, texture3);
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D, texture2);
 
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
+    }
 
     // rendering light source==============================================
     lightShader.use();
@@ -304,15 +309,15 @@ int main() {
     light_source_col.z = 0.5f * (sin(t * 3.0f) + 1.0f);
     lightShader.setVec3("light_source_col", light_source_col);
 
-    model = glm::mat4(1.0f);
+    glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, lightPos);
     model = glm::scale(model, glm::vec3(0.2f));
-    modelLoc = glGetUniformLocation(lightShader.ID, "model");
+    int modelLoc = glGetUniformLocation(lightShader.ID, "model");
 
     viewLoc = glGetUniformLocation(lightShader.ID, "view");
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
-    projectionLoc = glGetUniformLocation(lightShader.ID, "projection");
+    int projectionLoc = glGetUniformLocation(lightShader.ID, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     glBindVertexArray(lightVAO);
