@@ -1,9 +1,29 @@
-1. Diffused and Specular and Emission maps
+### 1. Lighting Experiments
 
-<div style="display:flex; gap:10px; justify-content:center;">
-  <img src="https://github.com/user-attachments/assets/e56ed70f-5399-4ed1-a9f2-251b17a6cb0e" width="300"/>
-  <img src="https://github.com/user-attachments/assets/022fa701-1ecf-4a14-a8ac-e6e4d3bc29db" width="300"/>
-  <img src="https://github.com/user-attachments/assets/0e9f0435-6c89-433b-8e50-55577fd95687" width="300"/>
-  <img src="https://github.com/user-attachments/assets/0f5ecad7-6e33-4d12-b7ed-b8ec4b73d97d" width="300"/>
+---
+
+#### 🧱 Diffuse / Specular / Emission Maps
+
+<div align="center">
+
+| Diffuse Map | Specular Map |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/0e9f0435-6c89-433b-8e50-55577fd95687" width="300"/> | <img src="https://github.com/user-attachments/assets/e56ed70f-5399-4ed1-a9f2-251b17a6cb0e" width="300"/> |
+
+| Emission Map | Diffuse (alternate view) |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/0f5ecad7-6e33-4d12-b7ed-b8ec4b73d97d" width="300"/> | <img src="https://github.com/user-attachments/assets/022fa701-1ecf-4a14-a8ac-e6e4d3bc29db" width="300"/> |
+
+</div>
+
+---
+
+#### 💡 Lighting Models
+
+<div align="center">
+
+| Directional Light | Point Light with Attenuation |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/fad87582-b48b-4163-aa6b-0eb7fe2e8673" width="450"/> | <img src="https://github.com/user-attachments/assets/0bb935e7-7c87-4d9d-9217-23fbfd0b0be1" width="450"/> |
 
 </div>
