@@ -35,7 +35,7 @@ void main()
     vec3 diffuse =vec3(texture(material.diffuse, TexCoords)) * diff * light.diffuse;
     vec3 specMap = vec3(texture(material.specular, TexCoords));
     float mask = specMap.r < 0.1 ? 1.0 : 0.0;
-    vec3 emissionMap = vec3(texture(material.emission, TexCoords))*mask;
+    vec3 emissionMap = vec3(texture(material.emission, TexCoords + vec2(0.0,light.diffuse.y)))*mask;
 
     //emission
     vec3 emission =emissionMap * diff;
