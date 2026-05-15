@@ -64,10 +64,9 @@ unsigned int load_texture(const char *path) {
   unsigned int texture;
   glGenTextures(1, &texture);
   glBindTexture(GL_TEXTURE_2D, texture);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                  GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
   int width, height, nrChannels;
@@ -207,6 +206,14 @@ int main() {
   glActiveTexture(GL_TEXTURE1);
   glBindTexture(GL_TEXTURE_2D, texture2);
 
+  unsigned int texture3 = load_texture("../assets/pop.jpg");
+  glActiveTexture(GL_TEXTURE2);
+  glBindTexture(GL_TEXTURE_2D, texture3);
+
+  int c_width, c_height, c_nrChannels;
+  unsigned char *data_c =
+      stbi_load("../assets/pop.jpg", &c_width, &c_height, &c_nrChannels, 0);
+
   unsigned int lightVAO;
   glGenVertexArrays(1, &lightVAO);
   glBindVertexArray(lightVAO);
@@ -236,6 +243,7 @@ int main() {
   ourShader.setFloat("light.constant", 1.0f);
   ourShader.setFloat("light.linear", 0.045f);
   ourShader.setFloat("light.quadratic", 0.075f);
+  ourShader.setInt("light.flashLight", 2);
 
   glm::mat4 projection;
 
@@ -260,15 +268,16 @@ int main() {
     glBindVertexArray(VAO);
 
     ourShader.use();
-    light_col.x = sin(glfwGetTime() * 2.0f);
-    light_col.y = sin(glfwGetTime() * 0.7f);
-    light_col.z = sin(glfwGetTime() * 1.3f);
+    light_col.x = 1.0f;
+    light_col.y = 0.0f;
+    light_col.z = 0.0f;
 
     ourShader.setVec3("light.diffuse", light_col * glm::vec3(1.0f));
     ourShader.setVec3("light.ambient", light_col * glm::vec3(0.01f));
     ourShader.setVec3("light.position", cam.cam_pos);
     ourShader.setVec3("light.direction", cam.cam_front_v);
     ourShader.setFloat("light.cutoff", glm::cos(glm::radians(12.5f)));
+    ourShader.setFloat("light.outCutoff", glm::cos(glm::radians(17.5f)));
 
     ourShader.setVec3("viewPos", cam.cam_pos);
 
@@ -277,16 +286,27 @@ int main() {
     int viewLoc = glGetUniformLocation(ourShader.ID, "view");
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
+    projection = glm::perspective(
+        glm::radians(cam.zoom), (float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
+
+    int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
+    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+    glm::mat4 lightView =
+        glm::lookAt(cam.cam_pos, cam.cam_pos + cam.cam_front_v,
+                    glm::vec3(0.0f, 1.0f, 0.0f));
+
+    glm::mat4 light_projection =
+        glm::perspective(glm::radians(17.5f * 2),
+                         float(c_width) / float(c_height), 0.1f, 100.0f);
+    glm::mat4 lightSpaceMatrix = light_projection * lightView;
+
+    int lightSpaceLoc = glGetUniformLocation(ourShader.ID, "lightSpace");
+    glUniformMatrix4fv(lightSpaceLoc, 1, GL_FALSE,
+                       glm::value_ptr(lightSpaceMatrix));
+
     for (unsigned int i = 0; i < 10; i++) {
       glm::mat4 model;
-
-      projection =
-          glm::perspective(glm::radians(cam.zoom),
-                           (float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
-      int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
-      glUniformMatrix4fv(projectionLoc, 1, GL_FALSE,
-                         glm::value_ptr(projection));
-
       model = glm::mat4(1.0f);
       model = glm::translate(model, cubePositions[i]);
       model =
@@ -301,6 +321,9 @@ int main() {
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture2);
 
+      glActiveTexture(GL_TEXTURE2);
+      glBindTexture(GL_TEXTURE_2D, texture3);
+
       glDrawArrays(GL_TRIANGLES, 0, 36);
     }
 
@@ -309,9 +332,9 @@ int main() {
 
     glm::vec3 light_source_col;
     float t = glfwGetTime();
-    light_source_col.x = 0.5f * (sin(t * 2.0f) + 1.0f);
-    light_source_col.y = 0.5f * (sin(t * 1.0f) + 1.0f);
-    light_source_col.z = 0.5f * (sin(t * 3.0f) + 1.0f);
+    light_source_col.x = 1.0f;
+    light_source_col.y = 0.0f;
+    light_source_col.z = 0.0f;
     lightShader.setVec3("light_source_col", light_source_col);
 
     glm::mat4 model = glm::mat4(1.0f);
@@ -322,7 +345,7 @@ int main() {
     viewLoc = glGetUniformLocation(lightShader.ID, "view");
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
-    int projectionLoc = glGetUniformLocation(lightShader.ID, "projection");
+    projectionLoc = glGetUniformLocation(lightShader.ID, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     glBindVertexArray(lightVAO);
