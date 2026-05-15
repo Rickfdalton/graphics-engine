@@ -6,11 +6,19 @@ set(CMAKE_CXX_STANDARD 17)
 # --------------------
 # Source files
 # --------------------
+
 add_executable(app
     src/main.cpp
     src/Shader.cpp
     src/glad.c
     src/stb_impl.cpp
+    imgui/imgui.cpp
+    imgui/imgui_draw.cpp
+    imgui/imgui_tables.cpp
+    imgui/imgui_widgets.cpp
+    imgui/imgui_demo.cpp
+    imgui/imgui_impl_glfw.cpp
+    imgui/imgui_impl_opengl3.cpp
 )
 
 # --------------------
@@ -19,6 +27,8 @@ add_executable(app
 target_include_directories(app PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/external/include
+    ${CMAKE_SOURCE_DIR}/imgui
+
 )
 
 # --------------------

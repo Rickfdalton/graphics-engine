@@ -128,12 +128,117 @@ CMakeFiles/app.dir/src/stb_impl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/src/stb_impl.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/src/stb_impl.cpp -o CMakeFiles/app.dir/src/stb_impl.cpp.s
 
+CMakeFiles/app.dir/imgui/imgui.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui.cpp
+CMakeFiles/app.dir/imgui/imgui.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/app.dir/imgui/imgui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui.cpp.o -MF CMakeFiles/app.dir/imgui/imgui.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui.cpp
+
+CMakeFiles/app.dir/imgui/imgui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui.cpp > CMakeFiles/app.dir/imgui/imgui.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui.cpp -o CMakeFiles/app.dir/imgui/imgui.cpp.s
+
+CMakeFiles/app.dir/imgui/imgui_draw.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui_draw.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_draw.cpp
+CMakeFiles/app.dir/imgui/imgui_draw.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/app.dir/imgui/imgui_draw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui_draw.cpp.o -MF CMakeFiles/app.dir/imgui/imgui_draw.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui_draw.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_draw.cpp
+
+CMakeFiles/app.dir/imgui/imgui_draw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui_draw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_draw.cpp > CMakeFiles/app.dir/imgui/imgui_draw.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui_draw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui_draw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_draw.cpp -o CMakeFiles/app.dir/imgui/imgui_draw.cpp.s
+
+CMakeFiles/app.dir/imgui/imgui_tables.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui_tables.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_tables.cpp
+CMakeFiles/app.dir/imgui/imgui_tables.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/app.dir/imgui/imgui_tables.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui_tables.cpp.o -MF CMakeFiles/app.dir/imgui/imgui_tables.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui_tables.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_tables.cpp
+
+CMakeFiles/app.dir/imgui/imgui_tables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui_tables.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_tables.cpp > CMakeFiles/app.dir/imgui/imgui_tables.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui_tables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui_tables.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_tables.cpp -o CMakeFiles/app.dir/imgui/imgui_tables.cpp.s
+
+CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_widgets.cpp
+CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o -MF CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_widgets.cpp
+
+CMakeFiles/app.dir/imgui/imgui_widgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui_widgets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_widgets.cpp > CMakeFiles/app.dir/imgui/imgui_widgets.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui_widgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui_widgets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_widgets.cpp -o CMakeFiles/app.dir/imgui/imgui_widgets.cpp.s
+
+CMakeFiles/app.dir/imgui/imgui_demo.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui_demo.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_demo.cpp
+CMakeFiles/app.dir/imgui/imgui_demo.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/app.dir/imgui/imgui_demo.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui_demo.cpp.o -MF CMakeFiles/app.dir/imgui/imgui_demo.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui_demo.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_demo.cpp
+
+CMakeFiles/app.dir/imgui/imgui_demo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui_demo.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_demo.cpp > CMakeFiles/app.dir/imgui/imgui_demo.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui_demo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui_demo.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_demo.cpp -o CMakeFiles/app.dir/imgui/imgui_demo.cpp.s
+
+CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.cpp
+CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o -MF CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.cpp
+
+CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.cpp > CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.cpp -o CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.s
+
+CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.cpp
+CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o -c /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.cpp
+
+CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.cpp > CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.i
+
+CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.cpp -o CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.s
+
 # Object files for target app
 app_OBJECTS = \
 "CMakeFiles/app.dir/src/main.cpp.o" \
 "CMakeFiles/app.dir/src/Shader.cpp.o" \
 "CMakeFiles/app.dir/src/glad.c.o" \
-"CMakeFiles/app.dir/src/stb_impl.cpp.o"
+"CMakeFiles/app.dir/src/stb_impl.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui_draw.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui_tables.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui_demo.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o" \
+"CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o"
 
 # External object files for target app
 app_EXTERNAL_OBJECTS =
@@ -142,10 +247,17 @@ app: CMakeFiles/app.dir/src/main.cpp.o
 app: CMakeFiles/app.dir/src/Shader.cpp.o
 app: CMakeFiles/app.dir/src/glad.c.o
 app: CMakeFiles/app.dir/src/stb_impl.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui_draw.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui_tables.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui_widgets.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui_demo.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o
+app: CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o
 app: CMakeFiles/app.dir/build.make
 app: /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/lib/libglfw.3.4.dylib
 app: CMakeFiles/app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

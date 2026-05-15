@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/include -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include
+C_INCLUDES = -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/include -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui
 
 C_FLAGS = 
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/include -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include
+CXX_INCLUDES = -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/include -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include -I/Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui
 
 CXX_FLAGS = -std=gnu++17
 

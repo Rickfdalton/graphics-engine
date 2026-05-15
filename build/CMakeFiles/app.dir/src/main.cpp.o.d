@@ -436,6 +436,11 @@ CMakeFiles/app.dir/src/main.cpp.o: \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/../geometric.hpp \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/../trigonometric.hpp \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/../matrix.hpp \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imconfig.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/shader.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/algorithm \

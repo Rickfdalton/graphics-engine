@@ -1,4 +1,7 @@
 #include "camera.h"
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 #include "shader.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -15,6 +18,7 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos);
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 void process_input(GLFWwindow *window);
 unsigned int load_texture(const char *path);
+bool cameraMode = false;
 
 Camera cam = Camera(glm::vec3(0.0f, 0.0f, 2.5f));
 Camera_Movement cam_mov;
@@ -26,6 +30,8 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
 }
 void mouse_callback(GLFWwindow *window, double xpos, double ypos) {
+  if (!cameraMode)
+    return;
   if (firstMouse) {
     lastX = xpos;
     lastY = ypos;
@@ -40,6 +46,8 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos) {
 }
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
+  if (!cameraMode)
+    return;
   cam.process_mouse_scroll(yoffset);
 }
 
@@ -166,6 +174,10 @@ int main() {
       glm::vec3(1.3f, -2.0f, -2.5f),  glm::vec3(1.5f, 2.0f, -2.5f),
       glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
 
+  glm::vec3 pointLightPositions[] = {
+      glm::vec3(0.7f, 0.2f, 2.0f), glm::vec3(2.3f, -3.3f, -4.0f),
+      glm::vec3(-4.0f, 2.0f, -12.0f), glm::vec3(0.0f, 0.0f, -3.0f)};
+
   Shader ourShader("../shaders/shader.vs", "../shaders/shader.fs");
   Shader lightShader("../shaders/shader_for_light.vs",
                      "../shaders/shader_for_light.fs");
@@ -206,14 +218,6 @@ int main() {
   glActiveTexture(GL_TEXTURE1);
   glBindTexture(GL_TEXTURE_2D, texture2);
 
-  unsigned int texture3 = load_texture("../assets/pop.jpg");
-  glActiveTexture(GL_TEXTURE2);
-  glBindTexture(GL_TEXTURE_2D, texture3);
-
-  int c_width, c_height, c_nrChannels;
-  unsigned char *data_c =
-      stbi_load("../assets/pop.jpg", &c_width, &c_height, &c_nrChannels, 0);
-
   unsigned int lightVAO;
   glGenVertexArrays(1, &lightVAO);
   glBindVertexArray(lightVAO);
@@ -233,25 +237,84 @@ int main() {
   ourShader.setInt("material.diffuse", 0);
   ourShader.setInt("material.specular", 1);
 
-  ourShader.setVec3("objectColor", obj_col);
-
   // set material
   ourShader.setFloat("material.shininess", 64.0f);
 
   // set light
-  ourShader.setVec3("light.specular", glm::vec3(1.0f));
-  ourShader.setFloat("light.constant", 1.0f);
-  ourShader.setFloat("light.linear", 0.045f);
-  ourShader.setFloat("light.quadratic", 0.075f);
-  ourShader.setInt("light.flashLight", 2);
+
+  ourShader.setVec3("dirLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+  ourShader.setVec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+  ourShader.setVec3("dirLight.diffuse", glm::vec3(0.4f, 0.4f, 0.4f));
+  ourShader.setVec3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+
+  for (int i = 0; i < 4; i++) {
+    std::string i_str = std::to_string(i);
+
+    ourShader.setFloat("pointLights[" + i_str + "].constant", 1.0f);
+    ourShader.setVec3("pointLights[" + i_str + "].position",
+                      pointLightPositions[i]);
+    ourShader.setVec3("pointLights[" + i_str + "].ambient",
+                      glm::vec3(0.05f, 0.05f, 0.05f));
+    ourShader.setVec3("pointLights[" + i_str + "].diffuse",
+                      glm::vec3(0.8f, 0.8f, 0.8f));
+    ourShader.setVec3("pointLights[" + i_str + "].specular",
+                      glm::vec3(1.0f, 1.0f, 1.0f));
+    ourShader.setFloat("pointLights[" + i_str + "].linear", 0.09f);
+    ourShader.setFloat("pointLights[" + i_str + "].quadratic", 0.032f);
+  }
+
+  ourShader.setVec3("spotLight.position", cam.cam_pos);
+  ourShader.setVec3("spotLight.direction", cam.cam_front_v);
+  ourShader.setVec3("spotLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+  ourShader.setVec3("spotLight.diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
+  ourShader.setVec3("spotLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+  ourShader.setFloat("spotLight.constant", 1.0f);
+  ourShader.setFloat("spotLight.linear", 0.09f);
+  ourShader.setFloat("spotLight.quadratic", 0.032f);
+  ourShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+  ourShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
 
   glm::mat4 projection;
 
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+  glm::vec4 clearColor = glm::vec4(0.9f, 0.9f, 0.9f, 1.0f);
+
+  //  Setup Dear ImGui
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+
+  ImGuiIO &io = ImGui::GetIO();
+  (void)io;
+
+  ImGui::StyleColorsDark();
+
+  // Setup Platform/Renderer backends
+  ImGui_ImplGlfw_InitForOpenGL(window, true);
+  ImGui_ImplOpenGL3_Init("#version 330");
+  
+
   // render loop
   while (!glfwWindowShouldClose(window)) {
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    bool currentMode = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
+
+    if (currentMode != cameraMode) {
+      cameraMode = currentMode;
+
+      if (cameraMode) {
+        firstMouse = true;
+
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+      } else {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+      }
+    }
+
     int fbWidth, fbHeight;
     glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
     glViewport(0, 0, fbWidth, fbHeight);
@@ -262,7 +325,7 @@ int main() {
 
     process_input(window);
 
-    glClearColor(0.05f, 0.05f, 0.05f, 0.05f);
+    glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glBindVertexArray(VAO);
@@ -273,7 +336,7 @@ int main() {
     light_col.z = 0.0f;
 
     ourShader.setVec3("light.diffuse", light_col * glm::vec3(1.0f));
-    ourShader.setVec3("light.ambient", light_col * glm::vec3(0.01f));
+    ourShader.setVec3("light.ambient", light_col * glm::vec3(0.1f));
     ourShader.setVec3("light.position", cam.cam_pos);
     ourShader.setVec3("light.direction", cam.cam_front_v);
     ourShader.setFloat("light.cutoff", glm::cos(glm::radians(12.5f)));
@@ -292,19 +355,6 @@ int main() {
     int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-    glm::mat4 lightView =
-        glm::lookAt(cam.cam_pos, cam.cam_pos + cam.cam_front_v,
-                    glm::vec3(0.0f, 1.0f, 0.0f));
-
-    glm::mat4 light_projection =
-        glm::perspective(glm::radians(17.5f * 2),
-                         float(c_width) / float(c_height), 0.1f, 100.0f);
-    glm::mat4 lightSpaceMatrix = light_projection * lightView;
-
-    int lightSpaceLoc = glGetUniformLocation(ourShader.ID, "lightSpace");
-    glUniformMatrix4fv(lightSpaceLoc, 1, GL_FALSE,
-                       glm::value_ptr(lightSpaceMatrix));
-
     for (unsigned int i = 0; i < 10; i++) {
       glm::mat4 model;
       model = glm::mat4(1.0f);
@@ -320,9 +370,6 @@ int main() {
 
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture2);
-
-      glActiveTexture(GL_TEXTURE2);
-      glBindTexture(GL_TEXTURE_2D, texture3);
 
       glDrawArrays(GL_TRIANGLES, 0, 36);
     }
@@ -352,9 +399,22 @@ int main() {
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
+    ImGui::Begin("Engine Debug");
+
+    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+    ImGui::ColorEdit3("Background Color", &clearColor[0]);
+    ImGui::End();
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
+
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
 
   glfwTerminate();
   return 0;
