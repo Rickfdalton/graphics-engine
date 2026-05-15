@@ -27,3 +27,13 @@
 | <img src="https://github.com/user-attachments/assets/fad87582-b48b-4163-aa6b-0eb7fe2e8673" width="450"/> | <img src="https://github.com/user-attachments/assets/0bb935e7-7c87-4d9d-9217-23fbfd0b0be1" width="450"/> |
 
 </div>
+
+#### 🔦 Flashlight Projection with Cookie Texture
+
+A projected spotlight (“cookie texture”) was implemented by projecting a texture through the spotlight frustum using light-space coordinates. The flashlight projection supports attenuation, smooth spotlight falloff, and texture-based masking effects.
+
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/84323c05-cec3-4826-944c-ef87486c0b0d" width="420"/>
+
+</div>
