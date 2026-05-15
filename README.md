@@ -34,6 +34,11 @@ A projected spotlight (“cookie texture”) was implemented by projecting a tex
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/84323c05-cec3-4826-944c-ef87486c0b0d" width="420"/>
+<img src="https://github.com/user-attachments/assets/84323c05-cec3-4826-944c-ef87486c0b0d" width="400"/>
 
+</div>
+
+#### 💡 Added Multiple Lights and imgui support
+<div align="center">
+<img width="500" alt="Screenshot 2026-05-15 at 18 34 34" src="https://github.com/user-attachments/assets/29ec1b4e-6376-406d-8893-b96ec9684ef3" />
 </div>
