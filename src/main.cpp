@@ -293,7 +293,6 @@ int main() {
   // Setup Platform/Renderer backends
   ImGui_ImplGlfw_InitForOpenGL(window, true);
   ImGui_ImplOpenGL3_Init("#version 330");
-  
 
   // render loop
   while (!glfwWindowShouldClose(window)) {
