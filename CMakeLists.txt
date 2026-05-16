@@ -28,7 +28,7 @@ target_include_directories(app PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/external/include
     ${CMAKE_SOURCE_DIR}/imgui
-
+    /Users/jathavanmahendrarajah/assimp/include
 )
 
 # --------------------
@@ -36,6 +36,7 @@ target_include_directories(app PRIVATE
 # --------------------
 target_link_libraries(app
     ${CMAKE_SOURCE_DIR}/external/lib/libglfw.3.4.dylib
+    /Users/jathavanmahendrarajah/assimp/bin/assimp.framework/assimp
 
     # macOS frameworks (same as your tasks.json)
     "-framework OpenGL"
