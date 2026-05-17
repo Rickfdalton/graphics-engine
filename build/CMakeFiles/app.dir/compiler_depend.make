@@ -2633,6 +2633,7 @@ CMakeFiles/app.dir/src/main.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/hash.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/identity.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/invoke.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/mem_fn.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/mem_fun_ref.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/not_fn.h \
@@ -2647,6 +2648,7 @@ CMakeFiles/app.dir/src/main.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/unwrap_ref.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/weak_result_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional_base \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/access.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/advance.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h \
@@ -2696,6 +2698,7 @@ CMakeFiles/app.dir/src/main.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/unique_ptr.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/uses_allocator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__mutex_base \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__nullptr \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/uniform_int_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/access.h \
@@ -2765,6 +2768,7 @@ CMakeFiles/app.dir/src/main.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/memory \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/mutex \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/new \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/optional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
@@ -2782,8 +2786,10 @@ CMakeFiles/app.dir/src/main.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/tuple \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/type_traits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/typeinfo \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_set \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/utility \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/variant \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/version \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/wchar.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/wctype.h \
@@ -3184,7 +3190,39 @@ CMakeFiles/app.dir/src/main.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.h \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.h \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/camera.h \
-  /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/shader.h
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/mesh.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/model.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/shader.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/Compiler/poppack1.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/Compiler/pushpack1.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/Importer.hpp \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/MathFunctions.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/aabb.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/anim.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/camera.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/color4.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/color4.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/config.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/defs.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/light.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/material.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/material.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix3x3.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix3x3.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix4x4.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix4x4.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/mesh.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/metadata.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/postprocess.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/quaternion.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/quaternion.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/scene.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/texture.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/types.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector2.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector2.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector3.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector3.inl
 
 CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/graphics-engine/src/stb_impl.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
@@ -3300,7 +3338,43 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/src/stb_impl.cpp:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/vector2.inl:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/vector2.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/scene.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/postprocess.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/metadata.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/mesh.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/matrix4x4.inl:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/matrix4x4.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/matrix3x3.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/material.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/camera.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/anim.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/Compiler/poppack1.h:
+
+/Users/jathavanmahendrarajah/Desktop/graphics-engine/include/mesh.h:
+
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/camera.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_set:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h:
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/src/main.cpp:
 
@@ -3319,6 +3393,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/vec4.hpp:
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/vec3.hpp:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/Importer.hpp:
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/mat3x3.hpp:
 
@@ -3460,6 +3536,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/ext/matrix_double2x2.hpp:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/aabb.h:
+
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/vector_relational.hpp:
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/constants.hpp:
@@ -3530,6 +3608,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ratio:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/texture.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/mutex:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/locale:
@@ -3585,6 +3665,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/swap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/piecewise_construct.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/color4.inl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/in_place.h:
 
@@ -3758,6 +3840,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/pop_heap.h:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/quaternion.inl:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/partition_point.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/partition_copy.h:
@@ -3823,6 +3907,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/find.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/fill_n.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/vector3.inl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/enable_borrowed_range.h:
 
@@ -3941,6 +4027,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/ext/scalar_constants.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_mutexattr_t.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/types.h:
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/ext/matrix_double3x4.hpp:
 
@@ -4258,6 +4346,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers/x509defs.h:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/color4.h:
+
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/KHR/khrplatform.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/i386/signal.h:
@@ -4372,7 +4462,11 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTRunDelegate.h:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/light.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTRun.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/optional:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_filesec_t.h:
 
@@ -4401,6 +4495,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTFontTraits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTFontManagerErrors.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/material.inl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTFontManager.h:
 
@@ -4572,6 +4668,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/MacErrors.h:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/config.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/IOKit.framework/Headers/hidsystem/IOHIDTypes.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy_backward.h:
@@ -4595,6 +4693,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers/HIServices.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Endian.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/Compiler/pushpack1.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/istream:
 
@@ -4725,6 +4825,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATSUI.framework/Headers/ATSUnicodeFlattening.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGPDFObject.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/types.h:
 
@@ -4888,6 +4990,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFFileDescriptor.h:
 
+/Users/jathavanmahendrarajah/assimp/include/assimp/MathFunctions.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binder2nd.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libkern/OSTypes.h:
@@ -4917,6 +5021,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/MachineExceptions.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/vector3.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/mach/thread_status.h:
 
@@ -5147,6 +5253,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/ext/matrix_double3x2_precision.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint64_t.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/matrix3x3.inl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_int8_t.h:
 
@@ -5405,6 +5513,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers/emmtype.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/quaternion.h:
 
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/ext/matrix_clip_space.inl:
 
@@ -5828,6 +5938,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_wchar_t.h:
 
+/Users/jathavanmahendrarajah/Desktop/graphics-engine/include/model.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libkern/OSAtomicQueue.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers/SecTrustedApplication.h:
@@ -5835,6 +5947,8 @@ CMakeFiles/app.dir/src/stb_impl.cpp.o: /Users/jathavanmahendrarajah/Desktop/grap
 /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/ext/quaternion_trigonometric.inl:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/IOKit.framework/Headers/IOKitKeys.h:
+
+/Users/jathavanmahendrarajah/assimp/include/assimp/defs.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include/stdarg.h:
 

@@ -1,21 +1,27 @@
 #ifndef MESH_H_
 #define MESH_H_
 
+#include "shader.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <stb/stb_image.h>
+#include <string>
+#include <vector>
+
 using namespace std;
 
 struct Vertex {
   glm::vec3 Position;
   glm::vec3 Normal;
-  glm::vec3 TexCoords;
+  glm::vec2 TexCoords;
 };
 
 struct Texture {
   unsigned int id;
   string type;
+  string path;
 };
 
 class Mesh {
@@ -41,7 +47,7 @@ public:
         number = to_string(specularNr++);
       }
       shader.setInt(("material." + name + number).c_str(), i);
-      glBindTexture(GL_TEXTURE2D, textures[i].id);
+      glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);

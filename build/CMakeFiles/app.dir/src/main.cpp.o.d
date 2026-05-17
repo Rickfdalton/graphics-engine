@@ -441,6 +441,7 @@ CMakeFiles/app.dir/src/main.cpp.o: \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_glfw.h \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_impl_opengl3.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/mesh.h \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/shader.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/algorithm \
@@ -687,4 +688,41 @@ CMakeFiles/app.dir/src/main.cpp.o: \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/../mat4x3.hpp \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/type_ptr.inl \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/GLFW/glfw3.h \
-  /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/stb/stb_image.h
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/stb/stb_image.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/vector \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/include/model.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/Importer.hpp \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/types.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/defs.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/config.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector2.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector3.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/color4.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix3x3.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix4x4.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/quaternion.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector2.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/vector3.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/color4.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix3x3.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/matrix4x4.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/MathFunctions.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/quaternion.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/postprocess.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/scene.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/texture.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/./Compiler/pushpack1.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/./Compiler/poppack1.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/mesh.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/aabb.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_set \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/optional \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/light.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/camera.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/material.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/material.inl \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/anim.h \
+  /Users/jathavanmahendrarajah/assimp/include/assimp/metadata.h

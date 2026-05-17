@@ -256,6 +256,7 @@ app: CMakeFiles/app.dir/imgui/imgui_impl_glfw.cpp.o
 app: CMakeFiles/app.dir/imgui/imgui_impl_opengl3.cpp.o
 app: CMakeFiles/app.dir/build.make
 app: /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/lib/libglfw.3.4.dylib
+app: /Users/jathavanmahendrarajah/assimp/bin/assimp.framework/assimp
 app: CMakeFiles/app.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jathavanmahendrarajah/Desktop/graphics-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app.dir/link.txt --verbose=$(VERBOSE)
