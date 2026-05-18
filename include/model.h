@@ -30,8 +30,14 @@ private:
 
   void loadModel(string path) {
     Assimp::Importer import;
-    const aiScene *scene =
-        import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+    unsigned int flags = aiProcess_Triangulate;
+
+    // Add FlipUV flag only for OBJ files
+    if (path.substr(path.find_last_of(".") + 1) == "obj") {
+      flags |= aiProcess_FlipUVs;
+    }
+
+    const aiScene *scene = import.ReadFile(path, flags);
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE ||
         !scene->mRootNode) {
       cout << "ERROR::ASSIMP::" << import.GetErrorString() << endl;

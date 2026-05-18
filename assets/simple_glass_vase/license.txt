@@ -1,0 +1,11 @@
+Model Information:
+* title:	Simple Glass Vase
+* source:	https://sketchfab.com/3d-models/simple-glass-vase-cdc94f959e2f4b5784b60196a98cc354
+* author:	Sousinho (https://sketchfab.com/sousinho)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Simple Glass Vase" (https://sketchfab.com/3d-models/simple-glass-vase-cdc94f959e2f4b5784b60196a98cc354) by Sousinho (https://sketchfab.com/sousinho) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

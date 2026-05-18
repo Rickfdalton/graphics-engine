@@ -1,0 +1,8 @@
+Model Information:
+* title:	Bone Swords
+* source:	https://sketchfab.com/3d-models/bone-swords-2baa646f163b4b838c0e6a4ab2aec105
+* author:	Vetech82 (https://sketchfab.com/Vetech82)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

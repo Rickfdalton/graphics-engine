@@ -152,7 +152,8 @@ int main() {
 
   Shader ourShader("../shaders/model_loading.vs",
                    "../shaders/model_loading.fs");
-  Model ourModel("../assets/backpack/backpack.obj");
+  Model ourModel("../assets/"
+                 "bone_swords/scene.gltf");
 
   // render loop
   while (!glfwWindowShouldClose(window)) {
