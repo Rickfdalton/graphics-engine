@@ -135,6 +135,7 @@ int main() {
   dt = 0.0f;
   float last_time = 0.0f;
   glm::vec4 clearColor = glm::vec4(0.9f, 0.9f, 0.9f, 1.0f);
+  glm::vec3 lightPos(2.2f, 1.0f, 1.0f);
 
   //  Setup Dear ImGui
   IMGUI_CHECKVERSION();
@@ -187,6 +188,9 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     ourShader.use();
+    ourShader.setVec3("lightPos", lightPos);
+    ourShader.setVec3("viewPos", cam.cam_pos);
+    ourShader.setVec3("lightColor", glm::vec3(1.0f));
 
     glm::mat4 view;
     view = cam.get_view_mat();
