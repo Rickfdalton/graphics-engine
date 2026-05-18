@@ -1,3 +1,5 @@
+This is a progressive graphics engine and you can tracing the process below.
+
 ### 1. Lighting Experiments
 
 ---
@@ -42,3 +44,9 @@ A projected spotlight (“cookie texture”) was implemented by projecting a tex
 <div align="center">
 <img width="500" alt="Screenshot 2026-05-15 at 18 34 34" src="https://github.com/user-attachments/assets/29ec1b4e-6376-406d-8893-b96ec9684ef3" />
 </div>
+
+#### Added Model Loading
+<div align="center">
+<img width="700"  alt="Screenshot 2026-05-18 at 12 10 27" src="https://github.com/user-attachments/assets/0e1320b8-b9d6-40a6-8957-7db116b0a388" />
+</div>
+
