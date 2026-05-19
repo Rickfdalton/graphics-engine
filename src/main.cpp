@@ -2,8 +2,6 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "mesh.h"
-#include "model.h"
 #include "shader.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -15,221 +13,296 @@
 
 using namespace std;
 
+// Forward declarations
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void mouse_callback(GLFWwindow *window, double xpos, double ypos);
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 void process_input(GLFWwindow *window);
 unsigned int load_texture(const char *path);
-bool cameraMode = false;
 
+// Global variables
+bool cameraMode = false;
 Camera cam = Camera(glm::vec3(0.0f, 0.0f, 2.5f));
 Camera_Movement cam_mov;
-
 float dt, lastX, lastY, pitch, yaw, fov;
 bool firstMouse = true;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-  glViewport(0, 0, width, height);
+    glViewport(0, 0, width, height);
 }
+
 void mouse_callback(GLFWwindow *window, double xpos, double ypos) {
-  if (!cameraMode)
-    return;
-  if (firstMouse) {
+    if (!cameraMode) return;
+    
+    if (firstMouse) {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos;
     lastX = xpos;
     lastY = ypos;
-    firstMouse = false;
-  }
-
-  float xoffset = xpos - lastX;
-  float yoffset = lastY - ypos;
-  lastX = xpos;
-  lastY = ypos;
-  cam.process_mouse_move(xoffset, yoffset, true);
+    cam.process_mouse_move(xoffset, yoffset, true);
 }
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
-  if (!cameraMode)
-    return;
-  cam.process_mouse_scroll(yoffset);
+    if (!cameraMode) return;
+    cam.process_mouse_scroll(yoffset);
 }
 
 void process_input(GLFWwindow *window) {
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, true);
-  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-    cam.process_keyboard(FORWARD, dt);
-  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-    cam.process_keyboard(BACKWARD, dt);
-  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-    cam.process_keyboard(LEFT, dt);
-  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-    cam.process_keyboard(RIGHT, dt);
-  if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-    cam.process_keyboard(UP, dt);
-  if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-    cam.process_keyboard(DOWN, dt);
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cam.process_keyboard(FORWARD, dt);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cam.process_keyboard(BACKWARD, dt);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        cam.process_keyboard(LEFT, dt);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        cam.process_keyboard(RIGHT, dt);
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+        cam.process_keyboard(UP, dt);
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        cam.process_keyboard(DOWN, dt);
 }
 
 unsigned int load_texture(const char *path) {
-  unsigned int texture;
-  glGenTextures(1, &texture);
-  glBindTexture(GL_TEXTURE_2D, texture);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-  int width, height, nrChannels;
-  unsigned char *data = stbi_load(path, &width, &height, &nrChannels, 0);
+    int width, height, nrChannels;
+    unsigned char *data = stbi_load(path, &width, &height, &nrChannels, 0);
 
-  if (data) {
-    GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
-    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format,
-                 GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-  } else {
-    cout << "TEXTURE LOAD FAILED: " << path << endl;
-  }
-  stbi_image_free(data);
-  return texture;
+    if (data) {
+        GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format,
+                                 GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    } else {
+        cout << "TEXTURE LOAD FAILED: " << path << endl;
+    }
+    stbi_image_free(data);
+    return texture;
 }
 
 int main() {
-  stbi_set_flip_vertically_on_load(true);
-
-  if (!glfwInit()) {
-    std::cout << "Failed to initialize GLFW\n";
-    return -1;
-  }
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
-  GLFWwindow *window = glfwCreateWindow(800, 400, "Hello Window", NULL, NULL);
-  if (window == NULL) {
-    std::cout << "Failed to create GLFW window" << std::endl;
-    glfwTerminate();
-    return -1;
-  }
-  glfwMakeContextCurrent(window);
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    std::cout << "Failed to initialize glad" << std::endl;
-    return -1;
-  }
-
-  lastX = 400;
-  lastY = 300;
-  pitch = 0.0f;
-  yaw = 0.0f;
-  fov = 45.0f;
-
-  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-  glEnable(GL_DEPTH_TEST);
-
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-  glfwSetCursorPosCallback(window, mouse_callback);
-  glfwSetScrollCallback(window, scroll_callback);
-
-  dt = 0.0f;
-  float last_time = 0.0f;
-  glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-  glm::vec3 lightPos(2.2f, 1.0f, 1.0f);
-
-  //  Setup Dear ImGui
-  IMGUI_CHECKVERSION();
-  ImGui::CreateContext();
-
-  ImGuiIO &io = ImGui::GetIO();
-  (void)io;
-
-  ImGui::StyleColorsDark();
-
-  // Setup Platform/Renderer backends
-  ImGui_ImplGlfw_InitForOpenGL(window, true);
-  ImGui_ImplOpenGL3_Init("#version 330");
-
-  Shader ourShader("../shaders/model_loading.vs",
-                   "../shaders/model_loading.fs");
-  Model ourModel("../assets/"
-                 "bone_swords/scene.gltf");
-
-  // render loop
-  while (!glfwWindowShouldClose(window)) {
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-
-    bool currentMode = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
-
-    if (currentMode != cameraMode) {
-      cameraMode = currentMode;
-
-      if (cameraMode) {
-        firstMouse = true;
-
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-      } else {
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-      }
+    // Initialize GLFW
+    if (!glfwInit()) {
+        cout << "Failed to initialize GLFW" << endl;
+        return -1;
     }
 
-    int fbWidth, fbHeight;
-    glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
-    glViewport(0, 0, fbWidth, fbHeight);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    float current_time = glfwGetTime();
-    dt = current_time - last_time;
-    last_time = current_time;
+    // Create window
+    GLFWwindow *window = glfwCreateWindow(800, 400, "Hello Window", NULL, NULL);
+    if (window == NULL) {
+        cout << "Failed to create GLFW window" << endl;
+        glfwTerminate();
+        return -1;
+    }
 
-    process_input(window);
+    glfwMakeContextCurrent(window);
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        cout << "Failed to initialize glad" << endl;
+        return -1;
+    }
 
-    glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Initialize variables
+    lastX = 400;
+    lastY = 300;
+    pitch = 0.0f;
+    yaw = 0.0f;
+    fov = 45.0f;
+
+    // Setup callbacks
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS); 
+    // glEnable(GL_BLEND);
+    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Setup vertex data
+    float cubeVertices[] = {
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f,
+            0.5f,  0.5f,  -0.5f, 1.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            -0.5f, 0.5f,  0.5f,  0.0f, 1.0f, -0.5f, -0.5f, 0.5f,  0.0f, 0.0f,
+            -0.5f, 0.5f,  0.5f,  1.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, -0.5f, 0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
+            0.5f,  -0.5f, -0.5f, 0.0f, 1.0f, 0.5f,  -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f,  -0.5f, 0.5f,  0.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f,  -0.5f, 0.5f,  1.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  1.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f, 0.5f,  0.5f,  0.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f};
+
+    float planeVertices[] = {
+            5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  -5.0f, -0.5f, 5.0f,
+            0.0f, 0.0f,  -5.0f, -0.5f, -5.0f, 0.0f,  2.0f,
+            5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  -5.0f, -0.5f, -5.0f,
+            0.0f, 2.0f,  5.0f,  -0.5f, -5.0f, 2.0f,  2.0f};
+
+    // Load shader
+    Shader ourShader("../shaders/depth_testing.vs", "../shaders/depth_testing.fs");
+
+    // Setup cube VAO/VBO
+    unsigned int cubeVAO, cubeVBO;
+    glGenVertexArrays(1, &cubeVAO);
+    glGenBuffers(1, &cubeVBO);
+    glBindVertexArray(cubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+    glBindVertexArray(0);
+
+    // Setup plane VAO/VBO
+    unsigned int planeVAO, planeVBO;
+    glGenVertexArrays(1, &planeVAO);
+    glGenBuffers(1, &planeVBO);
+    glBindVertexArray(planeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, planeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), planeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+    glBindVertexArray(0);
+
+    // Load textures
+    unsigned int cube_texture = load_texture("../assets/textures/marble.jpg");
+    unsigned int plane_texture = load_texture("../assets/textures/metal.png");
 
     ourShader.use();
-    ourShader.setVec3("lightPos", lightPos);
-    ourShader.setVec3("viewPos", cam.cam_pos);
-    ourShader.setVec3("lightColor", glm::vec3(1.0f));
+    ourShader.setInt("texture1", 0);
 
-    glm::mat4 view;
-    view = cam.get_view_mat();
-    int viewLoc = glGetUniformLocation(ourShader.ID, "view");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    // Setup ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
 
-    glm::mat4 projection = glm::perspective(
-        glm::radians(cam.zoom), (float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
+    // Timing
+    dt = 0.0f;
+    float last_time = 0.0f;
+    glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
 
-    int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+    // Render loop
+    while (!glfwWindowShouldClose(window)) {
+        // ImGui frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-    model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-    int modelLoc = glGetUniformLocation(ourShader.ID, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        // Handle camera mode toggle
+        bool currentMode = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
+        if (currentMode != cameraMode) {
+            cameraMode = currentMode;
+            firstMouse = true;
+            int cursorMode = cameraMode ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL;
+            glfwSetInputMode(window, GLFW_CURSOR, cursorMode);
+        }
 
-    ourModel.Draw(ourShader);
+        // Update framebuffer and delta time
+        int fbWidth, fbHeight;
+        glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
+        glViewport(0, 0, fbWidth, fbHeight);
 
-    ImGui::Begin("Engine Debug");
+        float current_time = glfwGetTime();
+        dt = current_time - last_time;
+        last_time = current_time;
 
-    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
-    ImGui::ColorEdit3("Background Color", &clearColor[0]);
-    ImGui::SliderFloat3("Light Position", &lightPos[0], -5.0f, 5.0f);
-    ImGui::End();
+        process_input(window);
 
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        // Render
+        glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glfwSwapBuffers(window);
-    glfwPollEvents();
-  }
+        ourShader.use();
+        ourShader.setVec3("viewPos", cam.cam_pos);
 
-  ImGui_ImplOpenGL3_Shutdown();
-  ImGui_ImplGlfw_Shutdown();
-  ImGui::DestroyContext();
+        glm::mat4 view = cam.get_view_mat();
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "view"), 1, GL_FALSE,
+                                             glm::value_ptr(view));
 
-  glfwTerminate();
-  return 0;
+        glm::mat4 projection = glm::perspective(glm::radians(cam.zoom),
+                                                                                     (float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "projection"), 1, GL_FALSE,
+                                             glm::value_ptr(projection));
+
+        // Render cube 1
+        glBindVertexArray(cubeVAO);
+        ourShader.setInt("texture1", 0);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, cube_texture);
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                             glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // Render cube 2
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                             glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // Render plane
+        glBindVertexArray(planeVAO);
+        ourShader.setInt("texture1", 1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, plane_texture);
+        model = glm::mat4(1.0f);
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                             glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        // ImGui UI
+        ImGui::Begin("Engine Debug");
+        ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+        ImGui::ColorEdit3("Background Color", &clearColor[0]);
+        ImGui::End();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Cleanup
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
+    glDeleteVertexArrays(1, &cubeVAO);
+    glDeleteVertexArrays(1, &planeVAO);
+    glDeleteBuffers(1, &cubeVBO);
+    glDeleteBuffers(1, &planeVBO);
+
+    glfwTerminate();
+    return 0;
 }
