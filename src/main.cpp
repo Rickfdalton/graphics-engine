@@ -134,7 +134,7 @@ int main() {
 
   dt = 0.0f;
   float last_time = 0.0f;
-  glm::vec4 clearColor = glm::vec4(0.9f, 0.9f, 0.9f, 1.0f);
+  glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
   glm::vec3 lightPos(2.2f, 1.0f, 1.0f);
 
   //  Setup Dear ImGui
@@ -216,6 +216,7 @@ int main() {
 
     ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
     ImGui::ColorEdit3("Background Color", &clearColor[0]);
+    ImGui::SliderFloat3("Light Position", &lightPos[0], -5.0f, 5.0f);
     ImGui::End();
 
     ImGui::Render();
