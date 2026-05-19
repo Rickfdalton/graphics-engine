@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/jathavanmahendrarajah/Desktop/graphics-engine/src/glad.c" "CMakeFiles/app.dir/src/glad.c.o" "gcc" "CMakeFiles/app.dir/src/glad.c.o.d"
+  "/Users/jathavanmahendrarajah/Desktop/graphics-engine/src/tinyfiledialogs.c" "CMakeFiles/app.dir/src/tinyfiledialogs.c.o" "gcc" "CMakeFiles/app.dir/src/tinyfiledialogs.c.o.d"
   "/Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui.cpp" "CMakeFiles/app.dir/imgui/imgui.cpp.o" "gcc" "CMakeFiles/app.dir/imgui/imgui.cpp.o.d"
   "/Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_demo.cpp" "CMakeFiles/app.dir/imgui/imgui_demo.cpp.o" "gcc" "CMakeFiles/app.dir/imgui/imgui_demo.cpp.o.d"
   "/Users/jathavanmahendrarajah/Desktop/graphics-engine/imgui/imgui_draw.cpp" "CMakeFiles/app.dir/imgui/imgui_draw.cpp.o" "gcc" "CMakeFiles/app.dir/imgui/imgui_draw.cpp.o.d"

@@ -687,4 +687,5 @@ CMakeFiles/app.dir/src/main.cpp.o: \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/../mat4x3.hpp \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/glm/gtc/type_ptr.inl \
   /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/GLFW/glfw3.h \
-  /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/stb/stb_image.h
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/stb/stb_image.h \
+  /Users/jathavanmahendrarajah/Desktop/graphics-engine/external/include/tinyfiledialogs/tinyfiledialogs.h

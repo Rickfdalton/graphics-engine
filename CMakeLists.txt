@@ -12,6 +12,7 @@ add_executable(app
     src/Shader.cpp
     src/glad.c
     src/stb_impl.cpp
+    src/tinyfiledialogs.c
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_tables.cpp

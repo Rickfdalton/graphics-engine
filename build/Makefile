@@ -393,6 +393,30 @@ src/stb_impl.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/stb_impl.cpp.s
 .PHONY : src/stb_impl.cpp.s
 
+src/tinyfiledialogs.o: src/tinyfiledialogs.c.o
+.PHONY : src/tinyfiledialogs.o
+
+# target to build an object file
+src/tinyfiledialogs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/tinyfiledialogs.c.o
+.PHONY : src/tinyfiledialogs.c.o
+
+src/tinyfiledialogs.i: src/tinyfiledialogs.c.i
+.PHONY : src/tinyfiledialogs.i
+
+# target to preprocess a source file
+src/tinyfiledialogs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/tinyfiledialogs.c.i
+.PHONY : src/tinyfiledialogs.c.i
+
+src/tinyfiledialogs.s: src/tinyfiledialogs.c.s
+.PHONY : src/tinyfiledialogs.s
+
+# target to generate assembly for a file
+src/tinyfiledialogs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/tinyfiledialogs.c.s
+.PHONY : src/tinyfiledialogs.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -435,6 +459,9 @@ help:
 	@echo "... src/stb_impl.o"
 	@echo "... src/stb_impl.i"
 	@echo "... src/stb_impl.s"
+	@echo "... src/tinyfiledialogs.o"
+	@echo "... src/tinyfiledialogs.i"
+	@echo "... src/tinyfiledialogs.s"
 .PHONY : help
 
 

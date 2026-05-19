@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/src/main.cpp.o.d"
   "CMakeFiles/app.dir/src/stb_impl.cpp.o"
   "CMakeFiles/app.dir/src/stb_impl.cpp.o.d"
+  "CMakeFiles/app.dir/src/tinyfiledialogs.c.o"
+  "CMakeFiles/app.dir/src/tinyfiledialogs.c.o.d"
   "app"
   "app.pdb"
 )

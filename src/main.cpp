@@ -10,6 +10,9 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <stb/stb_image.h>
+extern "C" {
+#include <tinyfiledialogs/tinyfiledialogs.h>
+}
 
 using namespace std;
 
@@ -86,14 +89,18 @@ unsigned int load_texture(const char *path) {
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format,
                                  GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
+        stbi_image_free(data);
+        return texture;
     } else {
         cout << "TEXTURE LOAD FAILED: " << path << endl;
+        glDeleteTextures(1, &texture);
+        return 0;
     }
-    stbi_image_free(data);
-    return texture;
 }
 
 int main() {
+    stbi_set_flip_vertically_on_load(true);
+
     // Initialize GLFW
     if (!glfwInit()) {
         cout << "Failed to initialize GLFW" << endl;
@@ -193,8 +200,10 @@ int main() {
     glBindVertexArray(0);
 
     // Load textures
-    unsigned int cube_texture = load_texture("../assets/textures/marble.jpg");
-    unsigned int plane_texture = load_texture("../assets/textures/metal.png");
+    char cubeTexturePath[260] = "../assets/textures/wall-egypt.png";
+    char planeTexturePath[260] = "../assets/textures/metal.png";
+    unsigned int cube_texture = load_texture(cubeTexturePath);
+    unsigned int plane_texture = load_texture(planeTexturePath);
 
     ourShader.use();
     ourShader.setInt("texture1", 0);
@@ -259,13 +268,34 @@ int main() {
         ourShader.setInt("texture1", 0);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, cube_texture);
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
+        glm::mat4 model = glm::mat4(1.0f);
+        
+        // Render cube 0
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                             glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // Render cube 1
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, 1.0f));
         glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // Render cube 2
         model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                             glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // Render cube 3
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, -1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                             glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // Render cube 4
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, -2.0f));
         glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -284,6 +314,61 @@ int main() {
         ImGui::Begin("Engine Debug");
         ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
         ImGui::ColorEdit3("Background Color", &clearColor[0]);
+
+        ImGui::Separator();
+        ImGui::Text("Cube Texture");
+        if (ImGui::Button("Browse Cube Texture"))
+        {
+            const char* path = tinyfd_openFileDialog(
+                "Select Cube Texture",
+                "",
+                0,
+                NULL,
+                NULL,
+                0
+            );
+
+            if (path)
+            {
+                unsigned int newTexture = load_texture(path);
+                if (newTexture != 0)
+                {
+                    if (cube_texture != 0)
+                        glDeleteTextures(1, &cube_texture);
+
+                    cube_texture = newTexture;
+                    strcpy(cubeTexturePath, path);
+                }
+            }
+        }
+        ImGui::TextWrapped("%s", cubeTexturePath);
+
+        ImGui::Separator();
+         if (ImGui::Button("Browse Floor Texture"))
+        {
+            const char* path = tinyfd_openFileDialog(
+                "Select Floor Texture",
+                "",
+                0,
+                NULL,
+                NULL,
+                0
+            );
+
+            if (path)
+            {
+                unsigned int newTexture = load_texture(path);
+                if (newTexture != 0)
+                {
+                    if (plane_texture != 0)
+                        glDeleteTextures(1, &plane_texture);
+
+                    plane_texture = newTexture;
+                    strcpy(planeTexturePath, path);
+                }
+            }
+        }
+        ImGui::TextWrapped("%s", planeTexturePath);
         ImGui::End();
 
         ImGui::Render();
