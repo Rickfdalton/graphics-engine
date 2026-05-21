@@ -316,14 +316,14 @@ int main() {
         
         // Render cube 0 upscaled
         model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
-        model = glm::scale(model, glm::vec3(1.1f,1.1f,1.1f));
+        model = glm::scale(model, glm::vec3(1.3f,1.3f,1.3f));
         glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // Render cube 1 upscaled
         model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, 1.0f));
-        model = glm::scale(model, glm::vec3(1.1f,1.1f,1.1f));
+        model = glm::scale(model, glm::vec3(1.3f,1.3f,1.3f));
         glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
