@@ -24,7 +24,7 @@ void process_input(GLFWwindow *window);
 unsigned int load_texture(const char *path);
 
 // Global variables
-bool cameraMode = false;
+bool cameraMode = true;
 Camera cam = Camera(glm::vec3(0.0f, 0.0f, 2.5f));
 Camera_Movement cam_mov;
 float dt, lastX, lastY, pitch, yaw, fov;
@@ -140,6 +140,7 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS); 
+    glEnable(GL_STENCIL_TEST);
     // glEnable(GL_BLEND);
     // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -172,6 +173,7 @@ int main() {
 
     // Load shader
     Shader ourShader("../shaders/depth_testing.vs", "../shaders/depth_testing.fs");
+    Shader borderShader("../shaders/depth_testing.vs", "../shaders/border_shader.fs");
 
     // Setup cube VAO/VBO
     unsigned int cubeVAO, cubeVBO;
@@ -207,6 +209,9 @@ int main() {
 
     ourShader.use();
     ourShader.setInt("texture1", 0);
+
+    borderShader.use();
+    borderShader.setInt("texture1", 0);
 
     // Setup ImGui
     IMGUI_CHECKVERSION();
@@ -249,7 +254,11 @@ int main() {
 
         // Render
         glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+        //stencil update
+        glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);  
+        glStencilFunc(GL_ALWAYS, 1, 0xFF);
 
         ourShader.use();
         ourShader.setVec3("viewPos", cam.cam_pos);
@@ -263,7 +272,6 @@ int main() {
         glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "projection"), 1, GL_FALSE,
                                              glm::value_ptr(projection));
 
-        // Render cube 1
         glBindVertexArray(cubeVAO);
         ourShader.setInt("texture1", 0);
         glActiveTexture(GL_TEXTURE0);
@@ -281,24 +289,51 @@ int main() {
         glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
+        //==================================
 
-        // Render cube 2
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+
+        borderShader.use();
+        borderShader.setVec3("viewPos", cam.cam_pos);
+
+        view = cam.get_view_mat();
+        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "view"), 1, GL_FALSE,
+                                             glm::value_ptr(view));
+
+        projection = glm::perspective(glm::radians(cam.zoom),(float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
+        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+        glBindVertexArray(cubeVAO);
+        borderShader.setInt("texture1", 0);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, cube_texture);
+        model = glm::mat4(1.0f);
+
+        //Drawing border 
+        glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+        glStencilMask(0x00);
+        glDisable(GL_DEPTH_TEST);
+        borderShader.use();
+        
+        // Render cube 0 upscaled
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
+        model = glm::scale(model, glm::vec3(1.1f,1.1f,1.1f));
+        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        // Render cube 3
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, -1.0f));
-        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+        // Render cube 1 upscaled
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(1.1f,1.1f,1.1f));
+        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
+        glStencilMask(0xFF);
+        glStencilFunc(GL_ALWAYS, 1, 0xFF);   
 
-        // Render cube 4
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, -2.0f));
-        glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
-                                             glm::value_ptr(model));
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //===================================
+        glStencilMask(0x00); 
+        glEnable(GL_DEPTH_TEST);  
+        ourShader.use();
 
         // Render plane
         glBindVertexArray(planeVAO);
@@ -309,6 +344,7 @@ int main() {
         glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 6);
+        glStencilMask(0xFF);
 
         // ImGui UI
         ImGui::Begin("Engine Debug");
