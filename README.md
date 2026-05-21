@@ -50,3 +50,9 @@ A projected spotlight (“cookie texture”) was implemented by projecting a tex
 <img width="700"  alt="Screenshot 2026-05-18 at 12 10 27" src="https://github.com/user-attachments/assets/0e1320b8-b9d6-40a6-8957-7db116b0a388" />
 </div>
 
+#### Stencil Test Experiments
+<div align="center">
+  <img width="700" alt="Screenshot 2026-05-21 at 19 28 27" src="https://github.com/user-attachments/assets/617e0f6b-46e0-459a-826d-a3acee2abf01" />
+
+</div>
+
