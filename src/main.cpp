@@ -254,7 +254,7 @@ int main() {
 
         // Render
         glEnable(GL_DEPTH_TEST);
-        glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);  
+        glStencilOp(GL_KEEP, GL_REPLACE, GL_REPLACE);  
 
         glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -279,6 +279,7 @@ int main() {
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, plane_texture);
         glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -0.01f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -328,14 +329,14 @@ int main() {
         
         // Render cube 0 upscaled
         model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
-        model = glm::scale(model, glm::vec3(1.3f,1.3f,1.3f));
+        model = glm::scale(model, glm::vec3(1.2f,1.2f,1.2f));
         glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // Render cube 1 upscaled
         model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, 1.0f));
-        model = glm::scale(model, glm::vec3(1.3f,1.3f,1.3f));
+        model = glm::scale(model, glm::vec3(1.2f,1.2f,1.2f));
         glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
                                              glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
