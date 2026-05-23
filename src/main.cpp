@@ -10,6 +10,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <stb/stb_image.h>
+#include <vector>
+
 extern "C" {
 #include <tinyfiledialogs/tinyfiledialogs.h>
 }
@@ -166,10 +168,22 @@ int main() {
             -0.5f, 0.5f,  0.5f,  0.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f};
 
     float planeVertices[] = {
-            5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  -5.0f, -0.5f, 5.0f,
-            0.0f, 0.0f,  -5.0f, -0.5f, -5.0f, 0.0f,  2.0f,
-            5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  -5.0f, -0.5f, -5.0f,
-            0.0f, 2.0f,  5.0f,  -0.5f, -5.0f, 2.0f,  2.0f};
+            5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  
+            -5.0f, -0.5f, 5.0f, 0.0f, 0.0f, 
+             -5.0f, -0.5f, -5.0f, 0.0f,  2.0f,
+            5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  
+            -5.0f, -0.5f, -5.0f,0.0f, 2.0f, 
+             5.0f,  -0.5f, -5.0f, 2.0f,  2.0f};
+
+    float grassVertices[] = {
+        0.0f,  0.5f,  0.0f,  0.0f,  1.0f,
+        0.0f, -0.5f,  0.0f,  0.0f,  0.0f,
+        1.0f, -0.5f,  0.0f,  1.0f,  0.0f,
+
+        0.0f,  0.5f,  0.0f,  0.0f,  1.0f,
+        1.0f, -0.5f,  0.0f,  1.0f,  0.0f,
+        1.0f,  0.5f,  0.0f,  1.0f,  1.0f
+    };
 
     // Load shader
     Shader ourShader("../shaders/depth_testing.vs", "../shaders/depth_testing.fs");
@@ -201,11 +215,36 @@ int main() {
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glBindVertexArray(0);
 
+    //Setup grass VAO/VBO
+    unsigned int grassVAO, grassVBO;
+    glGenVertexArrays(1, &grassVAO);
+    glGenBuffers(1, &grassVBO);
+    glBindVertexArray(grassVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, grassVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(grassVertices), grassVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+    glBindVertexArray(0);
+   
+
+    vector<glm::vec3> vegetation;
+    vegetation.push_back(glm::vec3(-1.5f,  0.0f, -0.48f));
+    vegetation.push_back(glm::vec3( 1.5f,  0.0f,  0.51f));
+    vegetation.push_back(glm::vec3( 0.0f,  0.0f,  0.7f));
+    vegetation.push_back(glm::vec3(-0.3f,  0.0f, -2.3f));
+    vegetation.push_back(glm::vec3( 0.5f,  0.0f, -0.6f));  
+
+
     // Load textures
     char cubeTexturePath[260] = "../assets/textures/wall-egypt.png";
     char planeTexturePath[260] = "../assets/textures/metal.png";
+    char grassTexturePath[260] = "../assets/textures/tall-grass.png";
     unsigned int cube_texture = load_texture(cubeTexturePath);
     unsigned int plane_texture = load_texture(planeTexturePath);
+    unsigned int grass_texture = load_texture(grassTexturePath);
+
 
     ourShader.use();
     ourShader.setInt("texture1", 0);
@@ -356,6 +395,24 @@ glStencilOpSeparate(GL_FRONT,
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glStencilMask(0x00);
 
+        //render grass
+        glDisable(GL_STENCIL_TEST);
+        ourShader.use();
+        glBindVertexArray(grassVAO);
+        ourShader.setInt("texture1", 2);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, grass_texture);  
+        for(unsigned int i = 0; i < vegetation.size(); i++) 
+        {
+            model = glm::mat4(1.0f);
+            model = glm::translate(model, vegetation[i]);				
+            glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
+                                                glm::value_ptr(model));
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+        }  
+        glEnable(GL_STENCIL_TEST);
+
+
 
         // ImGui UI
         ImGui::Begin("Engine Debug");
@@ -416,6 +473,33 @@ glStencilOpSeparate(GL_FRONT,
             }
         }
         ImGui::TextWrapped("%s", planeTexturePath);
+
+        ImGui::Separator();
+         if (ImGui::Button("Browse Grass Texture"))
+        {
+            const char* path = tinyfd_openFileDialog(
+                "Select Grass Texture",
+                "",
+                0,
+                NULL,
+                NULL,
+                0
+            );
+
+            if (path)
+            {
+                unsigned int newTexture = load_texture(path);
+                if (newTexture != 0)
+                {
+                    if (grass_texture != 0)
+                        glDeleteTextures(1, &grass_texture);
+
+                    grass_texture = newTexture;
+                    strcpy(grassTexturePath, path);
+                }
+            }
+        }
+        ImGui::TextWrapped("%s", grassTexturePath);
         ImGui::End();
 
         ImGui::Render();
