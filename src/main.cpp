@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stb/stb_image.h>
 #include <vector>
+#include <map>
 
 extern "C" {
 #include <tinyfiledialogs/tinyfiledialogs.h>
@@ -186,7 +187,7 @@ int main() {
     };
 
     // Load shader
-    Shader ourShader("../shaders/depth_testing.vs", "../shaders/depth_testing.fs");
+    Shader ourShader("../shaders/depth_testing.vs", "../shaders/blending.fs");
     Shader borderShader("../shaders/depth_testing.vs", "../shaders/border_shader.fs");
 
     // Setup cube VAO/VBO
@@ -229,12 +230,12 @@ int main() {
     glBindVertexArray(0);
    
 
-    vector<glm::vec3> vegetation;
-    vegetation.push_back(glm::vec3(-1.5f,  0.0f, -0.48f));
-    vegetation.push_back(glm::vec3( 1.5f,  0.0f,  0.51f));
-    vegetation.push_back(glm::vec3( 0.0f,  0.0f,  0.7f));
-    vegetation.push_back(glm::vec3(-0.3f,  0.0f, -2.3f));
-    vegetation.push_back(glm::vec3( 0.5f,  0.0f, -0.6f));  
+    vector<glm::vec3> transparent_items;
+    transparent_items.push_back(glm::vec3(-1.5f,  0.0f, -0.48f));
+    transparent_items.push_back(glm::vec3( 1.5f,  0.0f,  0.51f));
+    transparent_items.push_back(glm::vec3( 0.0f,  0.0f,  0.7f));
+    transparent_items.push_back(glm::vec3(-0.3f,  0.0f, -2.3f));
+    transparent_items.push_back(glm::vec3( 0.5f,  0.0f, -0.6f));  
 
 
     // Load textures
@@ -263,6 +264,9 @@ int main() {
     dt = 0.0f;
     float last_time = 0.0f;
     glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+
+    std::map<float, glm::vec3> sorted_transparent;
+
 
     // Render loop
     while (!glfwWindowShouldClose(window)) {
@@ -304,6 +308,10 @@ glStencilOpSeparate(GL_FRONT,
                     GL_KEEP,
                     GL_KEEP,
                     GL_KEEP);
+        //enable blending
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
 
         glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
@@ -402,10 +410,16 @@ glStencilOpSeparate(GL_FRONT,
         ourShader.setInt("texture1", 2);
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, grass_texture);  
-        for(unsigned int i = 0; i < vegetation.size(); i++) 
+
+        for (unsigned int i=0;i<transparent_items.size();i++){
+            float distance = glm::length(cam.cam_pos - transparent_items[i]);
+            sorted_transparent[distance]= transparent_items[i];
+        }
+
+        for (auto it = sorted_transparent.rbegin(); it!= sorted_transparent.rend();it++)
         {
             model = glm::mat4(1.0f);
-            model = glm::translate(model, vegetation[i]);				
+            model = glm::translate(model, it->second);				
             glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "model"), 1, GL_FALSE,
                                                 glm::value_ptr(model));
             glDrawArrays(GL_TRIANGLES, 0, 6);
