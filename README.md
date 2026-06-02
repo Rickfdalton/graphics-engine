@@ -54,5 +54,10 @@ A projected spotlight (“cookie texture”) was implemented by projecting a tex
 <div align="center">
 <img width="700" alt="Screenshot 2026-05-21 at 23 50 06" src="https://github.com/user-attachments/assets/f699fe61-9dce-4944-a8fb-c936779449f1" />
 
+#### Blending
+<div align="center">
+<img width="700"  alt="Screenshot 2026-06-02 at 19 21 45" src="https://github.com/user-attachments/assets/c1b13eb6-73d7-4a21-8856-1148d6833897" />
+
+
 </div>
 
