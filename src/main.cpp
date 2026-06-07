@@ -148,50 +148,50 @@ int main() {
     // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // Setup vertex data
-float cubeVertices[] = {
-    // Back face
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right         
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-    // Front face
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-    // Left face
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-    // Right face
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right         
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left     
-    // Bottom face
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-    // Top face
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right     
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left        
-};
+    float cubeVertices[] = {
+        // Back face
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
+        0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right         
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+        // Front face
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
+        0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
+        0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+        // Left face
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
+        // Right face
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
+        0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right         
+        0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
+        0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left     
+        // Bottom face
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
+        0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
+        // Top face
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right     
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left        
+    };
 
     float planeVertices[] = {
             5.0f, -0.5f, 5.0f,  2.0f,  0.0f,  
@@ -211,9 +211,20 @@ float cubeVertices[] = {
         1.0f,  0.5f,  0.0f,  1.0f,  1.0f
     };
 
+    float quadVertices[] = {  
+    // positions   // texCoords
+    -1.0f,  1.0f,  0.0f, 1.0f,
+    -1.0f, -1.0f,  0.0f, 0.0f,
+     1.0f, -1.0f,  1.0f, 0.0f,
+
+    -1.0f,  1.0f,  0.0f, 1.0f,
+     1.0f, -1.0f,  1.0f, 0.0f,
+     1.0f,  1.0f,  1.0f, 1.0f
+    };	
+
     // Load shader
+    Shader screenShader("../shaders/frame_buff.vs", "../shaders/frame_buff.fs");
     Shader ourShader("../shaders/depth_testing.vs", "../shaders/blending.fs");
-    Shader borderShader("../shaders/depth_testing.vs", "../shaders/border_shader.fs");
 
     // Setup cube VAO/VBO
     unsigned int cubeVAO, cubeVBO;
@@ -253,6 +264,19 @@ float cubeVertices[] = {
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glBindVertexArray(0);
+
+    // Setup quad VAO/VBO
+    unsigned int quadVAO, quadVBO;
+    glGenVertexArrays(1, &quadVAO);
+    glGenBuffers(1, &quadVBO);
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)(2 * sizeof(float)));
+    glBindVertexArray(0);
    
 
     vector<glm::vec3> transparent_items;
@@ -271,12 +295,11 @@ float cubeVertices[] = {
     unsigned int plane_texture = load_texture(planeTexturePath);
     unsigned int grass_texture = load_texture(grassTexturePath);
 
-
     ourShader.use();
     ourShader.setInt("texture1", 0);
 
-    borderShader.use();
-    borderShader.setInt("texture1", 0);
+    screenShader.use();
+    screenShader.setInt("screenTexture", 0);
 
     // Setup ImGui
     IMGUI_CHECKVERSION();
@@ -301,7 +324,7 @@ float cubeVertices[] = {
     unsigned int texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D,texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL); // filling will happen at render
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 400, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL); // filling will happen at render
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);  
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, texture, 0); // color attach
@@ -319,22 +342,30 @@ float cubeVertices[] = {
     unsigned int rbo;
     glGenRenderbuffers(1,&rbo);
     glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,800,600);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,800,400);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
    
 
-    if (! glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE){
-        std::cout << "Cannot create frame buffer" << std::endl;
-    } else{
-        std::cout << "Can create frame buffer" << std::endl;
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER)
+            != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Cannot create frame buffer\n";
+    }
+    else
+    {
+        std::cout << "Can create frame buffer\n";
     }
 
     // Render loop
     while (!glfwWindowShouldClose(window)) {
+
         // ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
+
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+        glEnable(GL_DEPTH_TEST);
 
         // Handle camera mode toggle
         bool currentMode = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
@@ -437,38 +468,38 @@ glStencilOpSeparate(GL_FRONT,
         glEnable(GL_STENCIL_TEST);
 
         //Render Reflection
-        glStencilFunc(GL_EQUAL, 1, 0xFF); 
-        glStencilMask(0x00);        
-        borderShader.use();
-        borderShader.setVec3("viewPos", cam.cam_pos);
-        view = cam.get_view_mat();
-        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "view"), 1, GL_FALSE,
-                                             glm::value_ptr(view));
+        // glStencilFunc(GL_EQUAL, 1, 0xFF); 
+        // glStencilMask(0x00);        
+        // borderShader.use();
+        // borderShader.setVec3("viewPos", cam.cam_pos);
+        // view = cam.get_view_mat();
+        // glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "view"), 1, GL_FALSE,
+        //                                      glm::value_ptr(view));
 
-        projection = glm::perspective(glm::radians(cam.zoom),(float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
-        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        // projection = glm::perspective(glm::radians(cam.zoom),(float)fbWidth / (float)fbHeight, 0.1f, 100.0f);
+        // glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-        glBindVertexArray(cubeVAO);
-        borderShader.setInt("texture1", 0);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, cube_texture);
-        model = glm::mat4(1.0f);
+        // glBindVertexArray(cubeVAO);
+        // borderShader.setInt("texture1", 0);
+        // glActiveTexture(GL_TEXTURE0);
+        // glBindTexture(GL_TEXTURE_2D, cube_texture);
+        // model = glm::mat4(1.0f);
         
-        // Render cube 0 mirrored
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
-        model = glm::scale(model, glm::vec3(1.0f, -1.0f, 1.0f));
+        // // Render cube 0 mirrored
+        // model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
+        // model = glm::scale(model, glm::vec3(1.0f, -1.0f, 1.0f));
 
-        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
-                                             glm::value_ptr(model));
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        // glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
+        //                                      glm::value_ptr(model));
+        // glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        // Render cube 1 mirrored
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, -1.0f, 1.0f));
-        model = glm::scale(model, glm::vec3(1.0f, -1.0f, 1.0f));
-        glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
-                                             glm::value_ptr(model));
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glStencilMask(0x00);
+        // // Render cube 1 mirrored
+        // model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, -1.0f, 1.0f));
+        // model = glm::scale(model, glm::vec3(1.0f, -1.0f, 1.0f));
+        // glUniformMatrix4fv(glGetUniformLocation(borderShader.ID, "model"), 1, GL_FALSE,
+        //                                      glm::value_ptr(model));
+        // glDrawArrays(GL_TRIANGLES, 0, 36);
+        // glStencilMask(0x00);
 
         //render grass
         glDisable(GL_STENCIL_TEST);
@@ -493,7 +524,18 @@ glStencilOpSeparate(GL_FRONT,
         }  
         glEnable(GL_STENCIL_TEST);
 
+        //render quad.
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glDisable(GL_DEPTH_TEST);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
 
+        screenShader.use();
+
+        glBindVertexArray(quadVAO);
+        glActiveTexture(GL_TEXTURE0); 
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
         // ImGui UI
         ImGui::Begin("Engine Debug");
