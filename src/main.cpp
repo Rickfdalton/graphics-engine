@@ -314,6 +314,9 @@ int main() {
     glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
 
     std::map<float, glm::vec3> sorted_transparent;
+    
+    int fbWidth, fbHeight;
+    glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
 
     //create our own framebuffer
     unsigned int fbo;
@@ -324,7 +327,7 @@ int main() {
     unsigned int texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D,texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 400, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL); // filling will happen at render
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, fbWidth, fbHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL); // filling will happen at render
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);  
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, texture, 0); // color attach
@@ -342,7 +345,7 @@ int main() {
     unsigned int rbo;
     glGenRenderbuffers(1,&rbo);
     glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,800,400);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,fbWidth,fbHeight);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
    
 
@@ -377,7 +380,6 @@ int main() {
         }
 
         // Update framebuffer and delta time
-        int fbWidth, fbHeight;
         glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
         glViewport(0, 0, fbWidth, fbHeight);
 
