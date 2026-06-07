@@ -317,9 +317,9 @@ float cubeVertices[] = {
 
     // using render buffer for depth and stencil attachment
     unsigned int rbo;
-    glGenRenderBuffers(1,&rbo);
-    glBindRenderBuffer(GL_RENDERBUFFER, rbo);
-    glRenderBufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,800,600);
+    glGenRenderbuffers(1,&rbo);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,800,600);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
    
 
