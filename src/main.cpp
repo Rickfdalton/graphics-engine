@@ -292,8 +292,42 @@ float cubeVertices[] = {
 
     std::map<float, glm::vec3> sorted_transparent;
 
+    //create our own framebuffer
+    unsigned int fbo;
+    glGenFramebuffers(1,&fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
+    // color attachments
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D,texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL); // filling will happen at render
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);  
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, texture, 0); // color attach
 
+    // depth & stencil attachments
+    // unsigned int depth_stencil_texture;
+    // glGenTextures(1, &depth_stencil_texture);
+    // glBindTexture(GL_TEXTURE_2D,depth_stencil_texture);
+    // glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, 800, 600, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);  
+    // glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_STENCIL_ATTACHMENT,GL_TEXTURE_2D, depth_stencil_texture, 0); 
+
+    // using render buffer for depth and stencil attachment
+    unsigned int rbo;
+    glGenRenderBuffers(1,&rbo);
+    glBindRenderBuffer(GL_RENDERBUFFER, rbo);
+    glRenderBufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,800,600);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+   
+
+    if (! glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE){
+        std::cout << "Cannot create frame buffer" << std::endl;
+    } else{
+        std::cout << "Can create frame buffer" << std::endl;
+    }
 
     // Render loop
     while (!glfwWindowShouldClose(window)) {
